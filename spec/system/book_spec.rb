@@ -17,5 +17,10 @@ RSpec.describe "books", type: :system do
         expect(page).to have_text("Author: matz")
         page.save_screenshot('ss.png')#失敗成功にかかわらず、スクリーンショットを撮影する。tmp/capybara/ss.png に保存
       end
+      it "enables me to create widgets" do
+        book = FactoryBot.create(:book)
+        visit "/books" # /booksへHTTPメソッドGETでアクセス
+        expect(page).to have_text(book.title)
+      end
   end
 end
